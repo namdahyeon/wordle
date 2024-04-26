@@ -1,0 +1,9 @@
+header {display: flex;align-items: center;
+   width: 100vw;height: 66px;padding: 0 20px;box-sizing: border-box;border-bottom: solid 1px #d3d6da;}
+.header-icons {display: flex;align-items: center;gap: 8px;width: 350px;}
+.header-icons.left {justify-content: flex-start;}
+.header-icons.right {justify-content: flex-end;}
+.header-icons svg {width: 28px;cursor: pointer;}
+
+header h2 {flex-grow: 2;text-align: center;
+font-weight: 700;font-size: 30px;}

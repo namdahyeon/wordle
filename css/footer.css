@@ -1,0 +1,12 @@
+footer {display: flex;flex-direction: column;justify-content: center;align-items: center;gap: 6px;
+   padding-bottom: 8px;}
+
+.keybord-row {display: flex;gap: 6px;}
+
+.keyboard-column {display: flex;justify-content: center;align-items: center;
+   width: 43px;height: 58px;border-radius: 4px;background-color: #d3d6da;
+font-weight: 700;cursor: pointer;}
+.row-3 .keyboard-column:first-of-type {width: 66px;font-size: 11px;}
+.row-3 .keyboard-column:last-of-type {width: 66px;}
+
+.keyboard-column svg {width: 20px;}
