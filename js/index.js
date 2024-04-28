@@ -8,7 +8,7 @@
 (선택) 키보드 클릭으로도 입력
 */
 
-const 정답 = 'APPLE';
+const 정답 = 'BRAVE';
 
 let attempts = 0;
 let index = 0;
@@ -30,14 +30,14 @@ function appStart(){
    }
 
    const nextLine = () => {
-      if(attempts === 6) return gameover();
+      if(attempts === 5) return gameover();
       attempts++;
       index = 0;
    }
 
    const handleEnterKey = () => {
       let 맞은_갯수 = 0;
-      for(let i=0; i<5; i++){
+      for(let i = 0; i < 5; i++){
          const block = document.querySelector(
             `.board-block[data-index='${attempts}${i}']`
          );
@@ -51,7 +51,6 @@ function appStart(){
          else if(정답.includes(입력한_글자)) block.style.background = '#c9b458';
          // .includes() : 텍스트 안에 해당 문자가 포함되어 있는지 확인. 값: true & false
          else block.style.background = '#787c7e';
-
          block.style.color = 'white';
          // console.log("입력한 글자: ", 입력한_글자, "정답_글자: ", 정답_글자);
       }
