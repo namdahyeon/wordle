@@ -2,6 +2,7 @@ main {display: flex;flex-direction: column;justify-content: center;align-items: 
 }
 .board-row {display: flex;justify-content: center;align-items: center;gap: 5px;}
 .board-block {display: flex;justify-content: center;align-items: center;width: 60px;height: 60px;
-border: 3px solid #d3d6da;}
+border: 3px solid #d3d6da;
+font-weight: bold;font-size: 24px;}
 
 #timer {font-weight: bold;font-size: 18px;margin-bottom: 20px;}
