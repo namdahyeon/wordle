@@ -8,7 +8,7 @@
 (선택) 키보드 클릭으로도 입력
 */
 
-const 정답 = 'BRAVE';
+// const 정답 = 'BRAVE';
 
 let attempts = 0;
 let index = 0;
@@ -35,8 +35,14 @@ function appStart(){
       index = 0;
    }
 
-   const handleEnterKey = () => {
+   const handleEnterKey = async() => {
       let 맞은_갯수 = 0;
+
+      // 서버에서 정답을 받아오는 코드
+      const 응답 = await fetch('/answer');
+      const 정답 = await 응답.json();
+      // await 사용하는 이유: 서버에서 응답이 올 때까지 기다리고 실행.
+
       for(let i = 0; i < 5; i++){
          const block = document.querySelector(
             `.board-block[data-index='${attempts}${i}']`
@@ -55,8 +61,14 @@ function appStart(){
          // console.log("입력한 글자: ", 입력한_글자, "정답_글자: ", 정답_글자);
       }
 
-      if(맞은_갯수 === 5) gameover();
-      else nextLine();
+      block = document.querySelector(`.row-${attempts}`);
+      if(맞은_갯수 === 5) {
+         block.classList.add('success');
+         gameover();
+      }else{
+         block.classList.add('fail');
+         nextLine();
+      };
    };
 
    const handleBackspace = () => {
@@ -88,6 +100,25 @@ function appStart(){
       }
    }
 
+   const handleKeyclick = (e) => {
+      console.log(e.srcElement.dataset.key);
+
+      const key = e.srcElement.dataset.key;
+      const thisBlock = document.querySelector(
+         `.board-block[data-index='${attempts}${index}']`
+      );
+      if(key === 'BACK') handleBackspace();
+      else if(key === "ENTER"){
+         if(index === 5) handleEnterKey();
+         else return
+      }else if(key){
+         if (index < 5){
+            thisBlock.innerText = key;
+            index++;
+         }
+      }else return
+   }
+
    const startTimer = () => {
       const 시작_시간 = new Date();
 
@@ -105,5 +136,6 @@ function appStart(){
    }
    startTimer();
    window.addEventListener("keydown", handleKeydown);
+   window.addEventListener("click", handleKeyclick);
 }
 appStart();
